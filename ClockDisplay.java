@@ -3,7 +3,7 @@
  * 24 HOUR INTERNAL BRANCH
  * 
  * The ClockDisplay class implements a digital clock display for a
- * US-style 12 hour clock. The clock shows hours and minutes. The 
+ * US-style 24 hour clock. The clock shows hours and minutes. The 
  * range of the clock is 12:00am (midnight) to 11:59pm (one minute before 
  * midnight).
  * 
