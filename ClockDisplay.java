@@ -30,7 +30,7 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
         updateDisplay();
     }
@@ -42,7 +42,7 @@ public class ClockDisplay
      */
     public ClockDisplay(int hour, int minute)
     {
-        hours = new NumberDisplay(24);
+        hours = new NumberDisplay(12);
         minutes = new NumberDisplay(60);
         setTime(hour, minute);
     }
@@ -84,7 +84,30 @@ public class ClockDisplay
      */
     private void updateDisplay()
     {
-        displayString = hours.getDisplayValue() + ":" + 
-                        minutes.getDisplayValue();
+        
+        int currentHour; 
+        String meridian; 
+        
+        hours.getValue();
+        
+        if (hours.getValue() == 0){
+            currentHour = 12;
+            meridian = "AM";
+            displayString = currentHour + ":" + 
+                        minutes.getDisplayValue() + meridian;
+        }
+        
+        else if (hours.getValue() < 12) {
+            meridian = "AM";
+            displayString = hours.getValue() + ":" + 
+                        minutes.getDisplayValue() + meridian;       
+        }
+        
+        else if (hours.getValue() > 12) {
+            meridian = "PM";
+            displayString = hours.getValue() + ":" + 
+                        minutes.getDisplayValue() + meridian;
+        }
+        
     }
 }
