@@ -29,8 +29,8 @@ public class ClockDisplay
      */
     public ClockDisplay()
     {
-        hours = new NumberDisplay(11);
-        minutes = new NumberDisplay(59);
+        hours = new NumberDisplay(24);
+        minutes = new NumberDisplay(60);
         updateDisplay();
     }
 
@@ -52,10 +52,12 @@ public class ClockDisplay
      */
     public void timeTick()
     {
+        
         minutes.increment();
         if(minutes.getValue() == 0) {  // it just rolled over!
             hours.increment();
         }
+        
         updateDisplay();
     }
 
@@ -78,20 +80,35 @@ public class ClockDisplay
         return displayString;
     }
     
+    
     /**
      * Update the internal string that represents the display.
      */
     private void updateDisplay()
     {
-        if (hours.getDisplayValue() == "0") {
-            displayString = hours.getDisplayValue() + ":" +
-                            minutes.getDisplayValue() + "AM"; 
+    int currentHour;
+      
+    hours.getValue(); 
+      
+        
+    if (hours.getValue() == 00){
+        currentHour = 12; 
+        displayString = currentHour + ":" +
+                        minutes.getDisplayValue() + "AM"; 
         }
         
-        if (hours.getDisplayValue() != "0") {
-            displayString = hours.getDisplayValue() + ":" +
-                            minutes.getDisplayValue() + "PM";
+    if (hours.getValue() >= 0 && hours.getValue() <= 11){
+        displayString = hours.getValue() + ":" +
+                        minutes.getDisplayValue() + "AM"; 
         }
+        
+    if (hours.getValue() >= 12 && hours.getValue() <= 23) {
+        displayString = hours.getValue() + ":" +
+                        minutes.getDisplayValue() + "PM"; 
+        }
+      
+    
 
     }
+
 }
