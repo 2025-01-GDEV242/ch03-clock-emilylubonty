@@ -88,26 +88,28 @@ public class ClockDisplay
     {
     int currentHour;
       
-    hours.getValue(); 
-      
+    currentHour = hours.getValue(); 
+    
+    if (currentHour > 11) {
         
-    if (hours.getValue() == 00){
+        currentHour = currentHour - 12;
+        displayString = currentHour + ":" +
+                        minutes.getDisplayValue() + "PM"; 
+    }
+    if (currentHour <= 11) {
+        
+        displayString = currentHour + ":" +
+                        minutes.getDisplayValue() + "AM";
+    }
+    if (currentHour == 0) {
         currentHour = 12; 
         displayString = currentHour + ":" +
-                        minutes.getDisplayValue() + "AM"; 
-        }
-        
-    if (hours.getValue() >= 0 && hours.getValue() <= 11){
-        displayString = hours.getValue() + ":" +
-                        minutes.getDisplayValue() + "AM"; 
-        }
-        
-    if (hours.getValue() >= 12 && hours.getValue() <= 23) {
-        displayString = hours.getValue() + ":" +
-                        minutes.getDisplayValue() + "PM"; 
-        }
-      
-    
+                        minutes.getDisplayValue() + "AM";
+    }
+    else {
+        displayString = currentHour + ":" +
+                        minutes.getDisplayValue() + "PM";
+    }
 
     }
 
