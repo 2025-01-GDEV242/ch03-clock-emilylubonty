@@ -86,20 +86,27 @@ public class ClockDisplay
     {
         
         int currentHour; 
-        boolean meridian = true;  
+        String meridian;  
         
-        hours.getValue();
+        currentHour = hours.getValue();
         
-        if (hours.getValue() == 0 && meridian == true) {  
-            currentHour = 12;
+        if (currentHour > 11) {
+            meridian = "AM";
+            currentHour = currentHour - 11; 
             displayString = currentHour + ":" + 
-                        minutes.getDisplayValue() + "AM";
+                        minutes.getDisplayValue() + meridian;
+                    
         }
-  
+        if (currentHour == 0){
+            meridian = "AM";
+            currentHour = currentHour + 12; 
+            displayString = currentHour + ":" + 
+                        minutes.getDisplayValue() + meridian;
+        }
         else {
-            meridian = false;  
-            displayString = hours.getValue() + ":" + 
-                        minutes.getDisplayValue() + "PM"; 
+            meridian = "PM";
+            displayString = currentHour + ":" + 
+                        minutes.getDisplayValue() + meridian; 
         }
         
     }
